@@ -1,5 +1,5 @@
 import type { PageServerLoad } from './$types';
-
+import type { Actions } from './$types';
 
 export const load: PageServerLoad = async () => {
 	return {
@@ -12,3 +12,9 @@ export const load: PageServerLoad = async () => {
         ]
     }
 };
+
+export const actions = {
+	filter: async (event) => {
+		console.log(event)
+	},
+} satisfies Actions;
