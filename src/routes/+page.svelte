@@ -6,20 +6,17 @@
     const toCamelCase = (line: string) => line.replace(/(^| )(.)/gm, (_, pre, char) => `${pre}${char.toUpperCase()}`);
 
     let cap = 1000;
-    let formElement: HTMLFormElement;
-    // $: formElement?.submit();
-
     export let data: PageData;
     export let form: ActionData;
 
     let loading = false;
 </script>
 
-<div class="container my-2 mx-auto flex gap-2">
+<div class="container my-2 mx-auto flex gap-2 items-start">
     <div id="sidebar" class="flex-shrink-0 p-3 border w-max">
         <h1 class="text-xl mb-2 font-semibold">Filters</h1>
         <hr>
-        <form bind:this={formElement} method="POST" action="?/filter" use:enhance={() => {
+        <form method="POST" action="?/filter" use:enhance={() => {
             loading = true;
             return async ({ update }) => {
                 await update({ reset: false });
@@ -51,7 +48,7 @@
     <main class="w-full flex-grow border p-4 relative">
         <h1 class="font-semibold mb-2">Showing {#if form?.success || data.products}{form?.products.length ?? data.products.length}{:else}{data.total}{/if}<!-- of {data.total}--> products</h1>
         <hr>
-        <div id="search-results" class:opacity-50={loading} class="grid justify-items-stretch grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mt-2 gap-2">
+        <div id="search-results" class:opacity-50={loading} class="grid justify-items-stretch grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mt-2 gap-2">
             {#if form?.success || data.products}
                 {#each form?.products ?? data.products as product}
                     <ProductCard {...product}/>

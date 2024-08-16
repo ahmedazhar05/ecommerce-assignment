@@ -9,6 +9,8 @@
         rate: number;
         count: number;
     }
+
+    $: added = $cart.has(id);
 </script>
 
 <div class="flex flex-col max-w-64 p-1 border-transparent border hover:border-gray-200 rounded justify-between overflow-hidden">
@@ -35,6 +37,12 @@
             </div>
             <span class="text-sm">{rating.count} ratings</span>
         </div>
-        <button class="bg-[goldenrod] hover:bg-opacity-85 text-white p-1 w-full mt-2" on:click={() => cart.add(id)}>Add to Cart</button>
+        <button class:bg-[orangered]={added} class:bg-[goldenrod]={!added} class="hover:bg-opacity-85 text-white p-1 w-full mt-2" on:click={() => {added ? cart.remove(id) : cart.add(id)}}>
+        {#if added}
+        Remove from Cart
+        {:else}
+        Add to Cart
+        {/if}
+        </button>
     </div>
 </div>
