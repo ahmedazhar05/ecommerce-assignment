@@ -2,7 +2,7 @@
     import "../app.css";
 </script>
 
-<header class="h-16 w-full shadow">
+<header class="h-16 w-full shadow bg-white top-0 sticky z-10">
     <div class="container gap-3 flex justify-between mx-auto my-0 relative h-full p-3">
         <div class="brand h-full flex-shrink-0">
             <img class="h-full" src="https://p1.edge.duggup.com/logo/profile-transparent-blue.svg" alt="brand logo">
