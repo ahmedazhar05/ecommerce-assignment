@@ -1,10 +1,11 @@
-import { getProductByFilter, getTotalProductCount, getAllCategories } from '$lib/server/db_logic';
+import { getProductByFilter, getTotalProductCount, getAllCategories, getAllProducts } from '$lib/server/db_logic';
 import type { PageServerLoad, Actions } from './$types';
 
 export const load: PageServerLoad = async () => {
     return {
         total: await getTotalProductCount(),
-        categories: await getAllCategories()
+        categories: await getAllCategories(),
+        products: await getAllProducts()
     }
 };
 
