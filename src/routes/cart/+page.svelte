@@ -5,9 +5,11 @@
     const sum = (total: number, num: number) => total + num;
 
     let deliveryCharge = 0;
+    let discount = 0;
     let itemSum: Record<number, number> = {};
 
     $: total = Number(Object.values(itemSum).reduce(sum, 0)).toFixed(2);
+    $: grandTotal = +total + deliveryCharge - discount;
 
     cart.subscribe(vals => {
         for(const v in itemSum) {
@@ -25,7 +27,7 @@
     <a class="py-2 px-20 rounded-md bg-[orangered] text-white font-semibold" href="/">Go back home</a>
 </div>
 {:else}
-<div class="container mx-auto my-0 flex gap-2 p-2 items-start justify-center">
+<div class="container mx-auto my-0 flex flex-col lg:flex-row gap-2 p-2 items-start justify-center">
     <div id="cart" class="flex flex-col border rounded-md w-full max-w-4xl">
         <div class="font-semibold p-2 border-b">
             <h1 class="text-xl inline-block">My Cart</h1>
@@ -36,9 +38,12 @@
             <CartItem {pid} bind:sum={itemSum[pid]}/>
             {/each}
         </div>
+        <div class="flex justify-end p-2">
+            <a href="/" class="bg-[lightblue] py-2 px-4 rounded-md w-full sm:w-auto text-center">Continue with shopping</a>
+        </div>
     </div>
-    <div id="order-summary" class="flex flex-col max-w-80 w-full rounded-md border">
-        <h1 class="text-lg p-2 border-b">Price Details</h1>
+    <div id="order-summary" class="flex flex-col max-w-full lg:max-w-80 w-full rounded-md border">
+        <h1 class="text-lg p-2 border-b font-semibold">Price Details</h1>
         <div class="grid gap-2 p-2 grid-cols-[auto_max-content]">
             <span>Price ({$cart.size} item{$cart.size > 1 ? 's' : ''})</span>
             <span class="text-end">&#8377;&nbsp;{total}</span>
@@ -49,6 +54,13 @@
             {:else}
             <span class="text-green-700 font-semibold text-end">FREE</span>
             {/if}
+        </div>
+        <div class="grid gap-2 p-2 grid-cols-[auto_max-content] border-t font-semibold">
+            <span>Total</span>
+            <span class="text-end">&#8377;&nbsp;{grandTotal.toFixed(2)}</span>
+        </div>
+        <div class="flex justify-end lg:justify-center border-t font-semibold p-2">
+            <button class="bg-[goldenrod] py-2 px-4 rounded-md w-full sm:w-auto lg:w-full text-white">Checkout</button>
         </div>
     </div>
 </div>
