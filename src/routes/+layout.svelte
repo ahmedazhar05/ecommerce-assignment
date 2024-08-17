@@ -30,7 +30,7 @@
         {/if}
     </div>
 </header>
-<div class="overflow-auto">
+<div class="overflow-auto bg-[gainsboro]">
     <slot />
 </div>
 <footer></footer>

@@ -29,7 +29,7 @@
 </div>
 {:else}
 <div class="container mx-auto my-0 flex flex-col lg:flex-row gap-2 p-2 items-start justify-center">
-    <div id="cart" class="flex flex-col border rounded-md w-full max-w-4xl">
+    <div id="cart" class="flex flex-col border rounded-md w-full max-w-4xl bg-white">
         <div class="font-semibold p-2 border-b">
             <h1 class="text-xl inline-block">My Cart</h1>
             <span class="text-lg">({$cart.size} product{$cart.size > 1 ? 's' : ''})</span>
@@ -43,7 +43,7 @@
             <a href="/" class="bg-[lightblue] py-2 px-4 rounded-md w-full sm:w-auto text-center">Continue with shopping</a>
         </div>
     </div>
-    <div id="order-summary" class="sticky top-0 flex flex-col max-w-full lg:max-w-80 w-full rounded-md border">
+    <div id="order-summary" class="sticky top-0 flex flex-col max-w-full lg:max-w-80 w-full rounded-md border bg-white">
         <h1 class="text-lg p-2 border-b font-semibold">Price Details</h1>
         <div class="grid gap-2 p-2 grid-cols-[auto_max-content]">
             <span>Price ({$cart.size} item{$cart.size > 1 ? 's' : ''})</span>

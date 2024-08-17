@@ -37,7 +37,7 @@
             </div>
             <span class="text-sm">{rating.count} ratings</span>
         </div>
-        <button class:bg-[orangered]={added} class:bg-[goldenrod]={!added} class="hover:bg-opacity-85 text-white p-1 w-full mt-2" on:click={() => {added ? cart.remove(id) : cart.add(id)}}>
+        <button class:bg-[orangered]={added} class:bg-[goldenrod]={!added} class="hover:bg-opacity-85 text-white p-1 w-full mt-2 rounded" on:click={() => {added ? cart.remove(id) : cart.add(id)}}>
         {#if added}
         Remove from Cart
         {:else}

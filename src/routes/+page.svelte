@@ -13,7 +13,7 @@
 </script>
 
 <div class="container p-2 mx-auto flex flex-col sm:flex-row gap-2 items-start">
-    <details open id="sidebar" class="group flex-shrink-0 p-3 border sticky top-0 bg-white z-10 w-full sm:w-max md:w-64">
+    <details open id="sidebar" class="group flex-shrink-0 p-3 border sticky top-0 bg-white rounded z-10 w-full sm:w-max md:w-64">
         <summary class="text-xl mb-0 group-open:mb-2 font-semibold flex justify-between items-center">
             <span>Filters</span>
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
@@ -47,10 +47,10 @@
                 </div>
             </fieldset>
             <hr>
-            <input type="submit" class:cursor-not-allowed={loading} class:opacity-50={loading} disabled={loading} class="mt-3 w-full p-1 bg-green-700 text-white rounded-lg font-bold" value="Apply" />
+            <input type="submit" class:cursor-not-allowed={loading} class:opacity-50={loading} disabled={loading} class="mt-3 w-full p-1 bg-green-700 text-white rounded font-bold" value="Apply" />
         </form>
     </details>
-    <main class="w-full flex-grow border p-4 relative">
+    <main class="w-full flex-grow border p-4 relative bg-white rounded">
         <h1 class="font-semibold mb-2">Showing {#if form?.success || data.products}{form?.products.length ?? data.products.length}{:else}{data.total}{/if}<!-- of {data.total}--> products</h1>
         <hr>
         <div id="search-results" class:opacity-50={loading} class="grid justify-items-stretch grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mt-2 gap-2">
