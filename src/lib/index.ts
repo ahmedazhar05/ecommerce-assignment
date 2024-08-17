@@ -1,1 +1,4 @@
-// place files you want to import through the `$lib` alias in this folder.
+export async function getProduct(id: number): Promise<Product> {
+    const res = await fetch('/api/product/' + id)
+    return await res.json();
+}
