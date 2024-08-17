@@ -15,6 +15,7 @@
         for(const v in itemSum) {
             if(!vals.has(+v)) {
                 delete itemSum[v];
+                itemSum = itemSum;
             }
         }
     });
@@ -42,7 +43,7 @@
             <a href="/" class="bg-[lightblue] py-2 px-4 rounded-md w-full sm:w-auto text-center">Continue with shopping</a>
         </div>
     </div>
-    <div id="order-summary" class="flex flex-col max-w-full lg:max-w-80 w-full rounded-md border">
+    <div id="order-summary" class="sticky top-0 flex flex-col max-w-full lg:max-w-80 w-full rounded-md border">
         <h1 class="text-lg p-2 border-b font-semibold">Price Details</h1>
         <div class="grid gap-2 p-2 grid-cols-[auto_max-content]">
             <span>Price ({$cart.size} item{$cart.size > 1 ? 's' : ''})</span>
@@ -60,7 +61,7 @@
             <span class="text-end">&#8377;&nbsp;{grandTotal.toFixed(2)}</span>
         </div>
         <div class="flex justify-end lg:justify-center border-t font-semibold p-2">
-            <button class="bg-[goldenrod] py-2 px-4 rounded-md w-full sm:w-auto lg:w-full text-white">Checkout</button>
+            <button class="bg-[goldenrod] py-2 px-4 rounded-md w-full sm:w-auto lg:w-full text-white">Proceed with Checkout</button>
         </div>
     </div>
 </div>
