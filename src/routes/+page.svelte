@@ -14,7 +14,7 @@
 
 <div class="container p-2 mx-auto flex flex-col sm:flex-row gap-2 items-start">
     <details open id="sidebar" class="group flex-shrink-0 p-3 border sticky top-0 bg-white rounded z-10 w-full sm:w-max md:w-64">
-        <summary class="text-xl mb-0 group-open:mb-2 font-semibold flex justify-between items-center">
+        <summary class="text-xl mb-0 group-open:mb-2 font-semibold flex justify-between items-center sm:group-open:pointer-events-none">
             <span>Filters</span>
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="group-[&:not([open])]:hidden sm:hidden size-6">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />

@@ -54,7 +54,7 @@
     <div id="order-summary" class="sticky top-0 flex flex-col max-w-full lg:max-w-[22rem] w-full rounded-md border bg-white">
         <h1 class="text-lg p-2 border-b font-semibold">Price Details</h1>
         <div class="grid gap-2 p-2 grid-cols-[auto_max-content]">
-            <span>Price ({$cart.size} item{$cart.size > 1 ? 's' : ''})</span>
+            <span>Subtotal ({$cart.size} item{$cart.size > 1 ? 's' : ''})</span>
             <span class="text-end">&#8377;&nbsp;{total}</span>
 
             <span>Delivery charges</span>
