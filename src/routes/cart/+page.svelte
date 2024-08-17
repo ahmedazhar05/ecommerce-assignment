@@ -4,12 +4,18 @@
 
     const sum = (total: number, num: number) => total + num;
 
+    const discountCoupons: Record<string, number> = {
+        ASSIGNMENT: 50,
+        PASS: 100
+    };
+
     let deliveryCharge = 0;
-    let discount = 0;
+    let couponUsed = "ASSIGNMENT";
+    $: discount = +total * (discountCoupons[couponUsed.toUpperCase()] ?? 0) / 100;
     let itemSum: Record<number, number> = {};
 
     $: total = Number(Object.values(itemSum).reduce(sum, 0)).toFixed(2);
-    $: grandTotal = +total + deliveryCharge - discount;
+    $: grandTotal = +total + +deliveryCharge.toFixed(2) - +discount.toFixed(2);
 
     cart.subscribe(vals => {
         for(const v in itemSum) {
@@ -22,10 +28,12 @@
 </script>
 
 {#if $cart.size < 1}
-<div class="container mx-auto my-0 flex flex-col items-center">
-    <h1 class="text-4xl font-semibold my-12 mx-8 text-center">There are not items in your Cart</h1>
-    <span class="mb-5">Go back Home to add items to your cart</span>
-    <a class="py-2 px-20 rounded-md bg-[orangered] text-white font-semibold" href="/">Go back home</a>
+<div class="bg-white py-12">
+    <div class="container mx-auto my-0 flex flex-col items-center">
+        <h1 class="text-4xl font-semibold mb-12 mx-8 text-center">There are not items in your Cart</h1>
+        <span class="mb-5">Go back Home to add items to your cart</span>
+        <a class="py-2 px-20 rounded-md bg-[orangered] text-white font-semibold" href="/">Go back home</a>
+    </div>
 </div>
 {:else}
 <div class="container mx-auto my-0 flex flex-col lg:flex-row gap-2 p-2 items-start justify-center">
@@ -43,7 +51,7 @@
             <a href="/" class="bg-[lightblue] py-2 px-4 rounded-md w-full sm:w-auto text-center">Continue with shopping</a>
         </div>
     </div>
-    <div id="order-summary" class="sticky top-0 flex flex-col max-w-full lg:max-w-80 w-full rounded-md border bg-white">
+    <div id="order-summary" class="sticky top-0 flex flex-col max-w-full lg:max-w-[22rem] w-full rounded-md border bg-white">
         <h1 class="text-lg p-2 border-b font-semibold">Price Details</h1>
         <div class="grid gap-2 p-2 grid-cols-[auto_max-content]">
             <span>Price ({$cart.size} item{$cart.size > 1 ? 's' : ''})</span>
@@ -55,13 +63,16 @@
             {:else}
             <span class="text-green-700 font-semibold text-end">FREE</span>
             {/if}
+            
+            <span>Discount <input class="font-mono px-2 py-0.5 rounded" type="text" size="10" placeholder="COUPON" bind:value={couponUsed}> {discountCoupons[couponUsed.toUpperCase()] ?? 0}% off</span>
+            <span class="text-end text-green-700">-&#8377;&nbsp;{discount.toFixed(2)}</span>
         </div>
         <div class="grid gap-2 p-2 grid-cols-[auto_max-content] border-t font-semibold">
             <span>Total</span>
             <span class="text-end">&#8377;&nbsp;{grandTotal.toFixed(2)}</span>
         </div>
         <div class="flex justify-end lg:justify-center border-t font-semibold p-2">
-            <button class="bg-[goldenrod] py-2 px-4 rounded-md w-full sm:w-auto lg:w-full text-white">Proceed with Checkout</button>
+            <button class="bg-[goldenrod] py-2 px-4 rounded-md w-full sm:w-auto lg:w-full text-white">Proceed to Checkout</button>
         </div>
     </div>
 </div>
