@@ -12,9 +12,9 @@
     let loading = false;
 </script>
 
-<div class="container px-2 my-2 mx-auto flex gap-2 items-start">
-    <div id="sidebar" class="flex-shrink-0 p-3 border w-max sticky top-0">
-        <h1 class="text-xl mb-2 font-semibold">Filters</h1>
+<div class="container p-2 mx-auto flex flex-col sm:flex-row gap-2 items-start">
+    <details id="sidebar" class="group flex-shrink-0 p-3 border sticky top-0 bg-white z-10 w-full sm:w-max md:w-64">
+        <summary class="text-xl mb-0 group-open:mb-2 font-semibold">Filters</summary>
         <hr>
         <form method="POST" action="?/filter" use:enhance={() => {
             loading = true;
@@ -37,18 +37,18 @@
             <fieldset class="my-2 text-sm">
                 <legend class="text-base font-semibold mb-2">Price Limit:</legend>
                 <div class="flex items-center gap-2">
-                    <input type="range" name="price-cap" id="price-cap" step="100" min="0" max="1000" bind:value={cap}>
+                    <input type="range" name="price-cap" id="price-cap" class="w-full" step="100" min="0" max="1000" bind:value={cap}>
                     <span>{cap}</span>
                 </div>
             </fieldset>
             <hr>
             <input type="submit" class:cursor-not-allowed={loading} class:opacity-50={loading} disabled={loading} class="mt-3 w-full p-1 bg-green-700 text-white rounded-lg font-bold" value="Apply" />
         </form>
-    </div>
+    </details>
     <main class="w-full flex-grow border p-4 relative">
         <h1 class="font-semibold mb-2">Showing {#if form?.success || data.products}{form?.products.length ?? data.products.length}{:else}{data.total}{/if}<!-- of {data.total}--> products</h1>
         <hr>
-        <div id="search-results" class:opacity-50={loading} class="grid justify-items-stretch grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mt-2 gap-2">
+        <div id="search-results" class:opacity-50={loading} class="grid justify-items-stretch grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mt-2 gap-2">
             {#if form?.success || data.products}
                 {#each form?.products ?? data.products as product}
                     <ProductCard {...product}/>

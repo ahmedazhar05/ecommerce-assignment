@@ -13,11 +13,11 @@
     $: added = $cart.has(id);
 </script>
 
-<div class="flex flex-col max-w-64 p-1 border-transparent border hover:border-gray-200 rounded justify-between overflow-hidden">
+<div class="flex flex-col max-w-64 p-2 sm:p-1 border-transparent border hover:border-gray-200 rounded justify-between overflow-hidden">
     <div class="flex items-center justify-center h-full w-full max-h-64">
         <img class="max-h-full max-w-full" src={image} alt="{title} product image">
     </div>
-    <div class="p-2">
+    <div class="sm:p-2">
         <h1 class="font-semibold">{title}</h1>
         <div class="font-semibold text-lg">&#8377;&nbsp;{price.toFixed(2)}</div>
         <div class="flex items-center gap-2 justify-end">

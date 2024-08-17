@@ -22,7 +22,7 @@
 
 {#if $cart.size < 1}
 <div class="container mx-auto my-0 flex flex-col items-center">
-    <h1 class="text-4xl font-semibold my-12">There are not items in your Cart</h1>
+    <h1 class="text-4xl font-semibold my-12 mx-8 text-center">There are not items in your Cart</h1>
     <span class="mb-5">Go back Home to add items to your cart</span>
     <a class="py-2 px-20 rounded-md bg-[orangered] text-white font-semibold" href="/">Go back home</a>
 </div>
