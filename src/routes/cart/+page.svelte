@@ -8,6 +8,14 @@
     let itemSum: Record<number, number> = {};
 
     $: total = Number(Object.values(itemSum).reduce(sum, 0)).toFixed(2);
+
+    cart.subscribe(vals => {
+        for(const v in itemSum) {
+            if(!vals.has(+v)) {
+                delete itemSum[v];
+            }
+        }
+    });
 </script>
 
 {#if $cart.size < 1}

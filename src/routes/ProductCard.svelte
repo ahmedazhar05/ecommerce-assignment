@@ -19,7 +19,7 @@
     </div>
     <div class="p-2">
         <h1 class="font-semibold">{title}</h1>
-        <div class="font-semibold text-lg">&#8377;&nbsp;{price}</div>
+        <div class="font-semibold text-lg">&#8377;&nbsp;{price.toFixed(2)}</div>
         <div class="flex items-center gap-2 justify-end">
             <div class="flex">
                 {#each Array(5).fill(24) as w, i}

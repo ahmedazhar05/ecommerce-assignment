@@ -37,7 +37,7 @@
     <div class="flex flex-col p-2 justify-between w-full gap-2">
         <div>
             <h1 class="mb-2 font-semibold text-xl">{product.title}</h1>
-            <div class="font-semibold mb-3">Price: &#8377;&nbsp;{product.price}</div>
+            <div class="font-semibold mb-3">Price: &#8377;&nbsp;{product.price.toFixed(2)}</div>
             <div class="text-sm flex gap-3">
                 <div>Rating: <strong>{product.rating.rate}</strong></div>
                 <div class="flex items-center gap-2">
