@@ -3,12 +3,17 @@
     import { cart } from "$lib/cart";
 
     export let pid: number;
-
-    let itemInfo = getProduct(pid);
+    export let sum = 0;
     let quantity = 1;
+    let prod: Product;
+    
+    let itemRequest = getProduct(pid);
+    itemRequest.then(p => prod = p)
+    
+    $: sum = quantity * (prod?.price ?? 0);
 </script>
 
-{#await itemInfo}
+{#await itemRequest}
 <div class="flex w-full h-[170px] items-center justify-center">
     <svg class="animate-spin h-8 w-8 text-red-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
         <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
