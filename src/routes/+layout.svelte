@@ -9,14 +9,14 @@
         <a href="/" class="brand h-full flex-shrink-0">
             <img class="h-full" src="https://p1.edge.duggup.com/logo/profile-transparent-blue.svg" alt="brand logo">
         </a>
-        <div class="search-bar flex items-center">
+        <!-- <div class="search-bar flex items-center">
             <input class="border border-solid py-1.5 rounded-l-lg border-inherit" type="search" placeholder="Search" name="search" id="search">
             <button class="hover:bg-gray-200 p-1.5 border border-solid rounded-r-lg border-l-0">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
                     <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
                 </svg>                      
             </button>
-        </div>
+        </div> -->
         {#if $page.url.pathname === '/cart'}
         <a href="/" class="hover:bg-gray-200 relative flex items-center text-lg border border-solid rounded-lg p-2">Home</a>
         {:else}
