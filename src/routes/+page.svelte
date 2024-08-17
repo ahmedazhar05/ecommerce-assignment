@@ -12,8 +12,8 @@
     let loading = false;
 </script>
 
-<div class="container my-2 mx-auto flex gap-2 items-start">
-    <div id="sidebar" class="flex-shrink-0 p-3 border w-max">
+<div class="container px-2 my-2 mx-auto flex gap-2 items-start">
+    <div id="sidebar" class="flex-shrink-0 p-3 border w-max sticky top-0">
         <h1 class="text-xl mb-2 font-semibold">Filters</h1>
         <hr>
         <form method="POST" action="?/filter" use:enhance={() => {
