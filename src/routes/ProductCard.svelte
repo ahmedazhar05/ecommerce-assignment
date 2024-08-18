@@ -1,5 +1,6 @@
 <script lang="ts">
     import { cart } from '$lib/cart';
+    import { send } from '$lib/transitions';
 
     export let id: number;
     export let price: number;
@@ -13,7 +14,11 @@
     $: added = $cart.has(id);
 </script>
 
-<div class="flex flex-col max-w-64 p-2 sm:p-1 border-transparent border hover:border-gray-200 rounded justify-between overflow-hidden">
+<div class="relative flex flex-col max-w-64 p-2 sm:p-1 border-transparent border hover:border-gray-200 rounded justify-between overflow-hidden">
+    {#if !added}
+    <!-- <div out:send={{ key: id }} class="absolute top-[calc(50%_-_0.5rem)] left-[calc(50%_-_0.5rem)] w-4 h-4 bg-[transparent] rounded-full"></div> -->
+    <div out:send={{ key: id }} class="absolute top-0 left-0 w-full h-full bg-[transparent] rounded-none pointer-events-none"></div>
+    {/if}
     <div class="flex items-center justify-center h-full w-full max-h-64">
         <img class="max-h-full max-w-full" src={image} alt="{title} product image">
     </div>
@@ -37,11 +42,11 @@
             </div>
             <span class="text-sm">{rating.count} ratings</span>
         </div>
-        <button class:bg-[orangered]={added} class:bg-[goldenrod]={!added} class="hover:bg-opacity-85 text-white p-1 w-full mt-2 rounded" on:click={() => {added ? cart.remove(id) : cart.add(id)}}>
+        <button class:bg-[orangered]={added} class:bg-[goldenrod]={!added} class="relative hover:bg-opacity-85 text-white p-1 w-full mt-2 rounded" on:click={() => {added ? cart.remove(id) : cart.add(id)}}>
         {#if added}
-        Remove from Cart
+            <span>Remove from Cart</span>
         {:else}
-        Add to Cart
+            <span>Add to Cart</span>
         {/if}
         </button>
     </div>
