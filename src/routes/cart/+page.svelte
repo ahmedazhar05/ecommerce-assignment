@@ -2,24 +2,22 @@
     import { cart } from '$lib/cart';
     import CartItem from './CartItem.svelte';
 
-    const sum = (total: number, num: number) => total + num;
-
     const discountCoupons: Record<string, number> = {
         ASSIGNMENT: 50,
-        PASS: 100
+        SELECTED: 100
     };
 
     let deliveryCharge = 0;
     let couponUsed = "ASSIGNMENT";
-    $: discount = +total * (discountCoupons[couponUsed.toUpperCase()] ?? 0) / 100;
     let itemSum: Record<number, number> = {};
 
-    $: total = Number(Object.values(itemSum).reduce(sum, 0)).toFixed(2);
-    $: grandTotal = +total + +deliveryCharge.toFixed(2) - +discount.toFixed(2);
+    $: total = Object.values(itemSum).reduce((total, num) => total + num, 0);
+    $: discount = total * (discountCoupons[couponUsed.toUpperCase()] ?? 0) / 100;
+    $: grandTotal = +total.toFixed(2) + +deliveryCharge.toFixed(2) - +discount.toFixed(2);
 
     cart.subscribe(vals => {
         for(const v in itemSum) {
-            if(!vals.has(+v)) {
+            if(!(vals.has(+v))) {
                 delete itemSum[v];
                 itemSum = itemSum;
             }
@@ -44,7 +42,7 @@
                 <span class="text-lg">({$cart.size} product{$cart.size > 1 ? 's' : ''})</span>
             </div>
             <div>
-                {#each $cart as pid (pid)}
+                {#each $cart.keys() as pid (pid)}
                 <CartItem {pid} bind:sum={itemSum[pid]}/>
                 {/each}
             </div>
@@ -58,7 +56,7 @@
             <h1 class="text-lg p-2 border-b font-semibold">Price Details</h1>
             <div class="grid gap-2 p-2 grid-cols-[auto_max-content]">
                 <span>Subtotal ({$cart.size} item{$cart.size > 1 ? 's' : ''})</span>
-                <span class="text-end">&#8377;&nbsp;{total}</span>
+                <span class="text-end">&#8377;&nbsp;{total.toFixed(2)}</span>
     
                 <span>Delivery charges</span>
                 {#if deliveryCharge}

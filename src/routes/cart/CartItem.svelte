@@ -4,13 +4,14 @@
 
     export let pid: number;
     export let sum = 0;
-    let quantity = 1;
+    let quantity = $cart.get(pid) ?? 1;
     let prod: Product;
     
     let itemRequest = getProduct(pid);
     itemRequest.then(p => prod = p);
     
     $: sum = quantity * (prod?.price ?? 0);
+    $: $cart.set(pid, quantity);
 </script>
 
 {#await itemRequest}
@@ -28,9 +29,9 @@
                 <img class="max-w-full h-[85px] sm:h-[100px]" src={product.image} alt="product image">
             </div>
             <div class="shrink-0 flex justify-center">
-                <button class:cursor-not-allowed={quantity < 2} class:opacity-50={quantity < 2} class="flex items-center justify-center aspect-square text-base bg-slate-100 hover:bg-slate-300 border border-[darkgray] text-center rounded-full w-[3ch]" disabled={quantity < 2} on:click={() => quantity--}><span>&ndash;</span></button>
+                <button class:cursor-not-allowed={quantity < 2} class:opacity-50={quantity < 2} class:hover:bg-slate-300={quantity > 1} class="flex items-center justify-center aspect-square text-base bg-slate-100 hover:bg-slate-300 border border-[darkgray] text-center rounded-full w-[3ch]" disabled={quantity < 2} on:click={() => quantity--}><span>&ndash;</span></button>
                 <span class="bg-white w-2/6 text-center border border-[darkgray] mx-3">{quantity}</span>
-                <button class="flex items-center justify-center aspect-square text-base bg-slate-100 hover:bg-slate-300 border border-[darkgray] text-center rounded-full w-[3ch]" on:click={() => quantity++}><span>+</span></button>
+                <button class="flex items-center justify-center aspect-square text-base bg-slate-100 border border-[darkgray] text-center rounded-full w-[3ch]" on:click={() => quantity++}><span>+</span></button>
             </div>
         </div>
     </div>
